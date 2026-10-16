@@ -1,0 +1,48 @@
+# Template source.yaml
+# Copy this file when creating a new scraper and fill in your values.
+#
+# Required fields:
+#   - source_id: Unique identifier (format: industry/source_name)
+#   - display_name: Human-readable name
+#   - entity_type: "person", "company", or "both"
+#   - data_as_of: ISO date when data was scraped (YYYY-MM-DD)
+#   - start_urls: List of URLs to scrape
+#   - run_command: Command to run the scraper
+#   - refresh: How often to refresh ("daily", "weekly", "monthly", "quarterly", "yearly")
+#   - primary_key_strategy: How to generate unique keys (see below)
+#   - expected_volume_range: Expected record count range
+
+source_id: "industry/example_source"
+display_name: "Example Source Directory"
+entity_type: "person"
+data_as_of: "2024-01-01"
+
+start_urls:
+  - "https://example.com/directory"
+
+run_command: "npx tsx scraper.ts"
+refresh: "monthly"
+
+# Primary key strategy options:
+#   type: "stable_id"   - Use source's unique ID (best option)
+#     stable_id_context_path: ["context", "field_name"]  # Path from record root
+#   type: "url"         - Use URL path as key
+#   type: "fingerprint" - Hash of specified fields
+#     fingerprint_fields: ["person.full_name", "context.company"]
+#   type: "url_fingerprint" - URL + hash for disambiguation
+primary_key_strategy:
+  type: "stable_id"
+  stable_id_context_path:
+    - "context"
+    - "original_id"
+
+expected_volume_range:
+  min: 100
+  max: 5000
+
+# Optional: Notes about the source
+notes: |
+  Add any special notes here:
+  - Rate limiting requirements
+  - Authentication needs
+  - Known issues or quirks

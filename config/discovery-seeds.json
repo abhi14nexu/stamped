@@ -1,0 +1,652 @@
+[
+  {
+    "url": "https://job-boards.greenhouse.io/wheely/jobs/7815219003?gh_jid=7815219003",
+    "company": "Wheely",
+    "query": "site:job-boards.greenhouse.io \"visa sponsorship\" engineer -deliveroo -wheely -monzo"
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/deliveroo/jobs/8276259",
+    "company": "Deliveroo",
+    "query": "site:job-boards.greenhouse.io \"visa sponsorship\" engineer -deliveroo -wheely -monzo"
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/monzo/jobs/8059461",
+    "company": "Monzo",
+    "query": "site:job-boards.greenhouse.io \"visa sponsorship\" engineer -deliveroo -wheely -monzo"
+  },
+  {
+    "url": "https://jobs.lever.co/lodgify/7a2e6831-4f3c-4f52-a00a-5c3b1014fa1b/apply?lever-origin=applied&lever-source%5B%5D=Jobgether",
+    "company": "Lodgify",
+    "query": "site:jobs.lever.co \"visa\" \"relocation\" \"engineer\" -qonto -rover -jobgether"
+  },
+  {
+    "url": "https://jobs.lever.co/kiddom/b5a1e465-e111-40f6-97cf-b94f9c2435d3/apply?lever-source=Job+postings+feed",
+    "company": "Kiddom",
+    "query": "site:jobs.lever.co \"visa\" \"relocation\" \"engineer\" -qonto -rover -jobgether"
+  },
+  {
+    "url": "https://jobs.lever.co/prismic/941f588a-7717-4817-987c-7a934a1d19d3/apply?lever-origin=applied&lever-source%5B%5D=wttj",
+    "company": "Prismic",
+    "query": "site:jobs.lever.co \"visa\" \"relocation\" \"engineer\" -qonto -rover -jobgether"
+  },
+  {
+    "url": "https://jobs.lever.co/quantco-/a7c4f142-b1ad-449c-a18e-bdbda41a3f86/apply",
+    "company": "QuantCo",
+    "query": "site:jobs.lever.co \"visa\" \"relocation\" \"engineer\" -qonto -rover -jobgether"
+  },
+  {
+    "url": "https://jobs.lever.co/binance/aaffde7d-6667-47c9-bb9b-20859be973bc/apply",
+    "company": "Binance",
+    "query": "site:jobs.lever.co \"visa\" \"relocation\" \"engineer\" -qonto -rover -jobgether"
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/riplo/137c829a-fc37-4b7e-961d-6ce97525460a/",
+    "company": "Riplo",
+    "query": "site:jobs.ashbyhq.com \"founding engineer\" \"London\" -Clera -jobgether"
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/fleetcraft/a1daa0df-d09b-45e0-bf52-6eb4dbc2e3bd",
+    "company": "Fleetcraft",
+    "query": "site:jobs.ashbyhq.com \"founding engineer\" \"London\" -Clera -jobgether"
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/marloo/50fa9b89-69fd-436b-af88-6d6e902e6973/",
+    "company": "Marloo",
+    "query": "site:jobs.ashbyhq.com \"founding engineer\" \"London\" -Clera -jobgether"
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/aptura/cd6b6df2-1a75-442e-83b3-2ae03c907f0c",
+    "company": "Aptura",
+    "query": "site:jobs.ashbyhq.com \"founding engineer\" \"London\" -Clera -jobgether"
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/tekton-dynamics/640c2679-2d42-4de9-af1f-5d5bee17d4cd",
+    "company": "Tekton Dynamics",
+    "query": "site:jobs.ashbyhq.com \"founding engineer\" \"London\" -Clera -jobgether"
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/monumental/1dec36d8-c26f-432d-8c79-9e4c3d0df18f",
+    "company": "Monumental",
+    "query": "site:jobs.ashbyhq.com \"founding engineer\" \"Amsterdam\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/airweave/3ff9f623-da57-4adf-ba2f-11154e141805/",
+    "company": "Airweave",
+    "query": "site:jobs.ashbyhq.com \"founding engineer\" \"Amsterdam\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/mimica/c50cc802-b399-472a-8ef6-1a56d0e51d8f",
+    "company": "Mimica",
+    "query": "site:jobs.ashbyhq.com \"founding engineer\" \"Amsterdam\""
+  },
+  {
+    "url": "https://jobs.lever.co/aqemia.com/95f8e7f1-902d-49e5-a29f-7cdd60ce6ad2",
+    "company": "Aqemia",
+    "query": "site:jobs.lever.co \"engineer\" \"London\" \"relocation support\""
+  },
+  {
+    "url": "https://jobs.lever.co/apolloresearch/2237ce81-cb8e-4f53-a047-e12ea5d6e7d8",
+    "company": "Apollo Research",
+    "query": "site:jobs.lever.co \"engineer\" \"London\" \"relocation support\""
+  },
+  {
+    "url": "https://jobs.lever.co/vestiairecollective/5e9335ed-f163-459e-aba6-5d6b26acacc6/apply",
+    "company": "Vestiaire Collective",
+    "query": "site:jobs.lever.co \"engineer\" \"Berlin\""
+  },
+  {
+    "url": "https://jobs.lever.co/researchgate/a58316f8-dc9b-4c2e-8d2a-49e87f8e3526/apply?lever-origin=applied&lever-source%5B%5D=RG-CareersDetails",
+    "company": "ResearchGate",
+    "query": "site:jobs.lever.co \"engineer\" \"Berlin\""
+  },
+  {
+    "url": "https://jobs.lever.co/xsolla",
+    "company": "Xsolla",
+    "query": "site:jobs.lever.co \"engineer\" \"Berlin\""
+  },
+  {
+    "url": "https://jobs.lever.co/qonto?lever-via=PpZMqxIGRP&workplaceType=remote",
+    "company": "Qonto",
+    "query": "site:jobs.lever.co \"engineer\" \"Berlin\""
+  },
+  {
+    "url": "https://jobs.lever.co/justwatch/61eeda6e-8ce0-458c-94e2-4eec770a5141/apply",
+    "company": "JustWatch",
+    "query": "site:jobs.lever.co \"engineer\" \"Berlin\""
+  },
+  {
+    "url": "https://jobs.lever.co/fluence/7fd4f6c5-b374-447b-a299-8c9380e36999",
+    "company": "Fluence",
+    "query": "site:jobs.lever.co \"engineer\" \"Berlin\""
+  },
+  {
+    "url": "https://jobs.lever.co/pipedrive?department=CDAO&lever-via=AzEtL7GTNx",
+    "company": "Pipedrive",
+    "query": "site:jobs.lever.co \"engineer\" \"Berlin\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/dept/jobs/7823875",
+    "company": "DEPT®",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"visa\" \"Germany\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/doctolib/jobs/7629374003?gh_src=005a60c13",
+    "company": "Doctolib",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"visa\" \"Germany\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/celonis/jobs/6517271003",
+    "company": "Celonis",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"visa\" \"Germany\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/parloa/jobs/4747267101",
+    "company": "Parloa",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"visa\" \"Germany\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/cresta/jobs/4668107008",
+    "company": "Cresta",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"visa\" \"Germany\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/workato/jobs/8462857002",
+    "company": "Workato",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"visa\" \"Germany\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/grafanalabs/jobs/6105600004",
+    "company": "Grafana Labs",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"visa\" \"Germany\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/nice/jobs/4549261101",
+    "company": "NICE",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"visa\" \"Germany\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/purestorage/jobs/7440838?gh_jid=7440838",
+    "company": "Everpure",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"visa\" \"Germany\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/photoroom/085eaa32-44fe-4928-8826-b48873823bfd",
+    "company": "Photoroom",
+    "query": "site:jobs.ashbyhq.com \"visa sponsorship\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/docker/669cedbe-f86e-4d65-abaa-c6611cb0d2ff/?embed=js",
+    "company": "Docker",
+    "query": "site:jobs.ashbyhq.com \"visa sponsorship\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/remanence/81e41419-4a37-4bc5-947a-bd1afb732608",
+    "company": "Remanence",
+    "query": "site:jobs.ashbyhq.com \"visa sponsorship\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/adaptive-ml/8d711b59-f384-4471-a0e8-73b803826414/",
+    "company": "Adaptive ML",
+    "query": "site:jobs.ashbyhq.com \"visa sponsorship\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/cotarobotics/5a9687b4-3526-45f5-a607-3894fc45394d",
+    "company": "Cota Robotics",
+    "query": "site:jobs.ashbyhq.com \"visa sponsorship\" \"Stockholm\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/lovable/642dfe37-d5f5-4cf7-a38d-d6dac3dde58f/?gh_src=Menlo+Ventures+job+board",
+    "company": "Lovable",
+    "query": "site:jobs.ashbyhq.com \"visa sponsorship\" \"Stockholm\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/payrails/d5a82e6a-2adc-4a82-8e78-730199a68639",
+    "company": "Payrails GmbH",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"Berlin\" \"relocation\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/sensmore/f10f3646-7a5b-43b5-a68e-d50e43c02af3",
+    "company": "Sensmore",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"Berlin\" \"relocation\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/Augustus/20831a42-35d4-4916-8ee8-301d5b0a4616/",
+    "company": "Augustus",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"Berlin\" \"relocation\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/getivy/77678d7c-5ab7-472d-98da-207c3642057f",
+    "company": "Augustus",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"Berlin\" \"relocation\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/solidroad/d81b28b9-1ffa-4a94-8376-a3af454bb6bc/",
+    "company": "Solidroad",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"Dublin\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/semperis/3b4d54ec-a891-4cb4-a17b-c23a078b3bb1?embed=js",
+    "company": "Semperis",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"Dublin\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/grand/b6753910-4586-4a8f-ade8-d1cd3f953e6d",
+    "company": "Grand Intelligence",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"Dublin\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/Crusoe/cc3c98fe-9c9f-4874-9462-2b85101312c1/",
+    "company": "Crusoe",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"Dublin\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/sitecore/494757ab-a98e-4b61-b16e-3ad1c101fb02",
+    "company": "Sitecore",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"Dublin\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/airapps/8aa9b3c3-fd2e-45b0-9802-c34ec0f6301b",
+    "company": "Air Apps",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"Dublin\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/cubic3/fad0562e-7e0b-4e2d-b0e2-6b502613a0a4",
+    "company": "Cubic³",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"Dublin\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/openai/63003bd5-05c8-408a-8d5a-8f5deb16113f/",
+    "company": "OpenAI",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"Dublin\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/xyz-reality/0b266baa-7f88-4b8b-b10a-6e289cd60cd3/?embed=js",
+    "company": "XYZ Reality",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"Dublin\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/metaview/c2fbb41a-9853-4226-a152-5cab0c1afca0?source=LinkedInPremium",
+    "company": "Metaview",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"London\" \"sponsor\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/conduct/9207b8c0-e479-47dd-b114-bcb3e8c2b6cf?from_theconsensus=1",
+    "company": "Conduct",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"London\" \"sponsor\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/synthesia/f7a77b1b-e458-497c-8c76-d33a114bec04",
+    "company": "Synthesia",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"London\" \"sponsor\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/kernel/fa906a02-51be-4d21-bf8a-2e918965dd8a/",
+    "company": "Kernel",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"London\" \"sponsor\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/kyra/5b679fb8-a9ff-4c09-99f8-82d582c0aa52/",
+    "company": "Kyra",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"London\" \"sponsor\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/gattaca/c1a34129-935e-440c-9c93-00abee6c6e22",
+    "company": "Gattaca",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"London\" \"sponsor\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/evervault/99f67635-01f1-4693-a9d5-bed3a8e04be0/",
+    "company": "Evervault",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"London\" \"sponsor\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/Resonance/122d5e02-685e-47b3-bc32-1d1d17d81bb3",
+    "company": "Resonance",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"London\" \"sponsor\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/frontier-health/0ff47d07-91b5-4456-9ecf-8438239b00ef",
+    "company": "Frontier Health",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"London\" \"sponsor\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/lindus/6573dbb1-bd27-4f1f-99aa-15ef9a4e594f",
+    "company": "Lindus",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"London\" \"sponsor\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/voodoo/45fb87c4-9cd0-4681-976d-2b6312933d12/",
+    "company": "Voodoo",
+    "query": "site:jobs.ashbyhq.com \"founding\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/maki/bedca6a8-778c-48e8-a971-dc902bac6242?src=levels.fyi",
+    "company": "MakiPeople",
+    "query": "site:jobs.ashbyhq.com \"founding\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/Prelude/328ffeec-3a2b-47f5-8be7-60aac3584c4c/",
+    "company": "Prelude",
+    "query": "site:jobs.ashbyhq.com \"founding\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/lemrock/75c3ae0f-7c08-49b2-b896-ee9834d71e6f",
+    "company": "Lemrock",
+    "query": "site:jobs.ashbyhq.com \"founding\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/beparallel/178ecbe5-d59f-47a6-9c21-0f54eea71df3",
+    "company": "Parallel",
+    "query": "site:jobs.ashbyhq.com \"founding\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.lever.co/zopa/37193ff4-2050-407e-ae17-79aa956d444c",
+    "company": "Zopa",
+    "query": "site:jobs.lever.co \"engineer\" \"London\" fintech"
+  },
+  {
+    "url": "https://jobs.lever.co/cmgx/f7d3a866-2352-47a1-a12e-77ba21f5e34b",
+    "company": "Capital Markets Gateway",
+    "query": "site:jobs.lever.co \"engineer\" \"London\" fintech"
+  },
+  {
+    "url": "https://jobs.lever.co/Notabene/f7270b23-6b20-4ebd-b13b-9597e007da9c",
+    "company": "Notabene",
+    "query": "site:jobs.lever.co \"engineer\" \"London\" fintech"
+  },
+  {
+    "url": "https://jobs.lever.co/yuno/f26bce6d-c46f-4c4b-9397-341cebe80986",
+    "company": "Yuno",
+    "query": "site:jobs.lever.co \"engineer\" \"London\" fintech"
+  },
+  {
+    "url": "https://jobs.lever.co/moonpay/2ea0b7ba-75a0-43e1-a80a-c561d8c74c5e?lever-source%5B%5D=jobs.paradigm.xyz",
+    "company": "MoonPay",
+    "query": "site:jobs.lever.co \"engineer\" \"London\" fintech"
+  },
+  {
+    "url": "https://jobs.lever.co/tsmg?location=Amsterdam",
+    "company": "TSMG",
+    "query": "site:jobs.lever.co \"engineer\" \"Amsterdam\""
+  },
+  {
+    "url": "https://jobs.lever.co/Coda?location=Amsterdam%2C+Netherlands",
+    "company": "Coda",
+    "query": "site:jobs.lever.co \"engineer\" \"Amsterdam\""
+  },
+  {
+    "url": "https://jobs.lever.co/sambatv/c6b47ece-76da-4d9c-8e79-7c94cf6ed282",
+    "company": "Samba",
+    "query": "site:jobs.lever.co \"engineer\" \"Amsterdam\""
+  },
+  {
+    "url": "https://jobs.lever.co/insify?location=Amsterdam",
+    "company": "Insify",
+    "query": "site:jobs.lever.co \"engineer\" \"Amsterdam\""
+  },
+  {
+    "url": "https://jobs.lever.co/serverfarm",
+    "company": "Serverfarm",
+    "query": "site:jobs.lever.co \"engineer\" \"Amsterdam\""
+  },
+  {
+    "url": "https://jobs.lever.co/cagents?location=Amsterdam",
+    "company": "CAI",
+    "query": "site:jobs.lever.co \"engineer\" \"Amsterdam\""
+  },
+  {
+    "url": "https://jobs.lever.co/storiogroup?location=Amsterdam%2C+NL",
+    "company": "Storio group",
+    "query": "site:jobs.lever.co \"engineer\" \"Amsterdam\""
+  },
+  {
+    "url": "https://jobs.lever.co/zerotier",
+    "company": "ZeroTier",
+    "query": "site:jobs.lever.co \"engineer\" \"Amsterdam\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/lucidsoftware/jobs/6190715004",
+    "company": "Lucid Software",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"sponsorship\" \"Netherlands\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/adyen/jobs/8226137",
+    "company": "Adyen",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"sponsorship\" \"Netherlands\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/telnyx54/jobs/7992708003?gh_src=Purpose+job+board",
+    "company": "Telnyx",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"sponsorship\" \"Netherlands\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/catawiki/jobs/8245606",
+    "company": "Catawiki",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"sponsorship\" \"Netherlands\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/workwize/jobs/4938710101",
+    "company": "Workwize",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"sponsorship\" \"Netherlands\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/doitintl/jobs/7989949003",
+    "company": "DoiT",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"sponsorship\" \"Netherlands\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/travix/jobs/8862782002",
+    "company": "Travix",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"sponsorship\" \"Netherlands\""
+  },
+  {
+    "url": "https://jobs.lever.co/Beamy/6a6bd63d-18f0-41bb-b3e8-2a52f4e6fbdd/apply?lever-origin=applied&lever-source=WTTJ",
+    "company": "Beamy",
+    "query": "site:jobs.lever.co \"engineer\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.lever.co/blablacar/ee9ab7f1-f2b0-4e90-a747-e61004bb59e6/apply",
+    "company": "BlaBlaCar",
+    "query": "site:jobs.lever.co \"engineer\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.lever.co/pigment/",
+    "company": "Pigment",
+    "query": "site:jobs.lever.co \"engineer\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.lever.co/bigblue/8dfc4051-e37b-416c-a034-3b783d13325d?lever-source%5B%5D=jobs.xange.vc",
+    "company": "Bigblue",
+    "query": "site:jobs.lever.co \"engineer\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.lever.co/outsight?location=Paris",
+    "company": "Outsight",
+    "query": "site:jobs.lever.co \"engineer\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.lever.co/ekimetrics/?location=Paris",
+    "company": "Ekimetrics",
+    "query": "site:jobs.lever.co \"engineer\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.lever.co/sfeir?location=Paris",
+    "company": "SFEIR",
+    "query": "site:jobs.lever.co \"engineer\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.lever.co/veepee?location=Paris",
+    "company": "Veepee",
+    "query": "site:jobs.lever.co \"engineer\" \"Paris\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/granola/76f9896f-f241-403d-9be3-e14f337e11cd/",
+    "company": "Granola",
+    "query": "site:jobs.ashbyhq.com \"Granola\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/comind/753f63c6-2519-40d9-879a-db3d123ee446",
+    "company": "CoMind",
+    "query": "site:jobs.ashbyhq.com \"Granola\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/Deepgram/2084edc0-2df0-4bd4-b759-0f05c38d5ef5?employmentType=FullTime",
+    "company": "Deepgram",
+    "query": "site:jobs.ashbyhq.com \"Granola\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/humaans/92ac47f7-a1af-4c8c-acd5-8e0d3834ef9c",
+    "company": "Humaans",
+    "query": "site:jobs.ashbyhq.com \"Fyxer\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/fyxer/8f240d08-d3a5-4e17-b203-a7bcceedb304",
+    "company": "Fyxer",
+    "query": "site:jobs.ashbyhq.com \"Fyxer\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/strala-ai/e38aa100-d0fc-47f0-946f-c29ea403e549",
+    "company": "Strala Group, Inc.",
+    "query": "site:jobs.ashbyhq.com \"Strala\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/attio/021659c3-1fda-41c3-9f1b-ac91cf712566",
+    "company": "Attio",
+    "query": "site:jobs.ashbyhq.com \"Attio\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/alphasenseindia?gh_src=metaintro",
+    "company": "AlphaSense India",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"Remote - India\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/karat?error=true",
+    "company": "Karat",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"Remote - India\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/twilio/jobs/8213730",
+    "company": "Twilio",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"Remote - India\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/alphasense/jobs/8547394002",
+    "company": "AlphaSense",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"Remote - India\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/dscout/jobs/4370266009",
+    "company": "Dscout",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"Remote - India\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/verkada/jobs/5240478007",
+    "company": "Verkada",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"visa\" \"London\" \"offer\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/xai/jobs/4956070007?gh_src=beb72b8a7us",
+    "company": "xAI",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"visa\" \"London\" \"offer\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/physicsx/jobs/4845687101",
+    "company": "PhysicsX",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"visa\" \"London\" \"offer\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/gocardless/jobs/7996584",
+    "company": "GoCardless",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"visa\" \"London\" \"offer\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/flohealth/jobs/7821391003?gh_src=8a8e885b3us",
+    "company": "Flo Health",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"visa\" \"London\" \"offer\""
+  },
+  {
+    "url": "https://job-boards.greenhouse.io/anthropic/jobs/4938436008?gh_src=myjobs.greenhouse",
+    "company": "Anthropic",
+    "query": "site:job-boards.greenhouse.io \"engineer\" \"visa\" \"London\" \"offer\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/simplestudy/0e94d3ab-83a5-4ed3-9d44-cc8bfaa711d2",
+    "company": "SimpleStudy",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"worldwide\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/sentry/f129ac00-0d67-43e2-9726-70ae262f5320?from_theconsensus=1",
+    "company": "Sentry",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"worldwide\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/elveo/f7cc00da-c87c-47ba-96af-d26f0582903e",
+    "company": "Elveo",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"worldwide\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/Lynk/abe12a55-9300-4197-9396-83df31f4d3b9",
+    "company": "Elveo",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"worldwide\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/labhouse/8e17d45f-415c-4e18-9b07-44b0261e3765/",
+    "company": "LABHOUSE",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"worldwide\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/lumilens/453797d5-d77e-46bd-b025-89e4d0707fb9/",
+    "company": "Lumilens",
+    "query": "site:jobs.ashbyhq.com \"engineer\" \"worldwide\""
+  },
+  {
+    "url": "https://jobs.lever.co/dnb?location=Dublin+-+Ireland",
+    "company": "Dun & Bradstreet",
+    "query": "site:jobs.lever.co \"engineer\" \"Dublin\""
+  },
+  {
+    "url": "https://jobs.lever.co/websummit/49a26560-c0b3-42ba-8b3b-0252ec90550e",
+    "company": "Web Summit",
+    "query": "site:jobs.lever.co \"engineer\" \"Dublin\""
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/helmguard/eddb7ed7-6e6f-447b-815f-ba76cea54563",
+    "company": "HelmGuard Technologies, Inc.",
+    "query": "site:jobs.ashbyhq.com \"founding engineer\" London visa"
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/callosum/e33ede97-fee9-4c0a-8063-9944923fa36b",
+    "company": "Callosum",
+    "query": "site:jobs.ashbyhq.com \"founding engineer\" London visa"
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/tracebit/6bd973d5-3b60-463a-9e26-eb95bd28be34",
+    "company": "Tracebit",
+    "query": "site:jobs.ashbyhq.com \"founding engineer\" London visa"
+  },
+  {
+    "url": "https://jobs.lever.co/bazaarvoice/924f9609-5a3e-4142-80eb-668525ce99e2/apply",
+    "company": "Bazaarvoice",
+    "query": "site:jobs.lever.co \"visa sponsorship\" Europe engineer"
+  },
+  {
+    "url": "https://jobs.lever.co/rover/a825940e-3c09-408a-bfe8-a4f14c9f2c9a/apply",
+    "company": "Rover.com",
+    "query": "site:jobs.lever.co \"visa sponsorship\" Europe engineer"
+  },
+  {
+    "url": "https://jobs.lever.co/backmarket/9e9d4f29-2923-4025-90a4-7546634d9b6a/apply?lever-source=WTTJ",
+    "company": "Back Market",
+    "query": "site:jobs.lever.co \"visa sponsorship\" Europe engineer"
+  },
+  {
+    "url": "https://jobs.lever.co/conduktor/369c77b4-ed62-4689-811f-f1e93dd71002/apply",
+    "company": "Conduktor",
+    "query": "site:jobs.lever.co \"visa sponsorship\" Europe engineer"
+  },
+  {
+    "url": "https://jobs.ashbyhq.com/dex/2cd27547-040a-4832-afa8-14c66e9a6d89",
+    "company": "Dex",
+    "query": "Dex official careers links at https://meetdex.ai/about"
+  }
+]

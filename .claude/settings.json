@@ -1,0 +1,25 @@
+{
+  "defaultMode": "bypassPermissions",
+  "enabledPlugins": {
+    "playwright@claude-plugins-official": true
+  },
+  "mcpServers": {
+    "trigger": {
+      "command": "npx",
+      "args": ["trigger.dev@latest", "mcp"]
+    }
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ \"$CLAUDE_CODE_REMOTE\" = \"true\" ]; then npx playwright install chromium && npm install -g trigger.dev@latest; fi"
+          }
+        ]
+      }
+    ]
+  }
+}

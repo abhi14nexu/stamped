@@ -1,0 +1,28 @@
+"source_id": "jobs/tech_opportunities"
+"display_name": "Tech opportunities — US international remote, UK and EU"
+"entity_type": "company"
+"data_as_of": "2026-10-16"
+"start_urls":
+  - "https://www.jackandjill.ai/jobs/sitemap.xml"
+  - "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search"
+  - "https://boards-api.greenhouse.io/v1/boards/monzo/jobs?content=true"
+  - "https://api.ashbyhq.com/posting-api/job-board/elevenlabs"
+  - "https://api.lever.co/v0/postings/spotify?mode=json"
+  - "https://api.smartrecruiters.com/v1/companies/Wise/postings"
+  - "https://relocate.me/international-jobs"
+  - "https://remotive.com/api/remote-jobs"
+  - "https://jobicy.com/api/v2/remote-jobs"
+  - "https://www.arbeitnow.co.uk/api/job-board-api"
+  - "https://www.arbeitnow.com/api/job-board-api"
+  - "https://himalayas.app/jobs/api/search"
+"run_command": "npm run scrape:tech"
+"refresh": "daily"
+"primary_key_strategy":
+  "type": "stable_id"
+  "stable_id_context_path":
+    - "context"
+    - "external_id"
+"expected_volume_range":
+  "min": 0
+  "max": 50000
+"notes": "Public employer and paginated multi-employer discovery feeds. Optional HiringCafe first-page searches; disabled by default because of Cloudflare. Facts are emitted as contract JSONL; eligibility and sponsorship are separately derived rules. Local preview only, pending human source review; no Supabase writes. Daily is a desired cadence, not an installed scheduler."

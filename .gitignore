@@ -1,0 +1,14 @@
+node_modules/
+.DS_Store
+
+# Environment variables (contains credentials)
+.env.local
+.env
+
+# Git worktrees
+.worktrees/
+
+# Local job snapshots and generated dashboard assets
+.local/
+dashboard/dist/
+data_in_progress/jobs/tech_opportunities/output/
