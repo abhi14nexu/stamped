@@ -1,4 +1,5 @@
-export type Market = 'us_remote' | 'uk' | 'eu';
+/** remote_global: open to work from anywhere (any employer). india: a US employer hiring in India, remotely or at an Indian office. */
+export type Market = 'uk' | 'eu' | 'remote_global' | 'india';
 export type SponsorStatus = 'yes' | 'no' | 'unknown';
 /** A name match against a government register of employers licensed to sponsor work visas. */
 export interface RegisterMatch {
@@ -27,6 +28,7 @@ export interface Job {
   company: string;
   employerCountry?: string;
   employerCountrySource?: string;
+  employerCountryReason?: string;
   location: string;
   countries: string[];
   markets: Market[];
@@ -53,6 +55,7 @@ export interface RawJob {
   company: string;
   employerCountry?: string;
   employerCountrySource?: string;
+  employerCountryReason?: string;
   location: string;
   description: string;
   applyUrl: string;

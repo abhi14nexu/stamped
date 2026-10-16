@@ -134,6 +134,28 @@ export function sponsorshipFromText(text: string): Sponsorship {
   return result('unknown', null, 'No usable sponsorship evidence in the listing.');
 }
 
+// US locations as ATS boards write them. Two-letter state codes that are also common country codes
+// (DE, IN, IL, CO, AR, ID, AL, GA) are left out so "Berlin, DE" or "Bengaluru, IN" never read as US.
+const US_PLACE = /\b(?:united states|u\.s\.a?\.?|usa|us[ -]remote|remote[ ,(–-]+us\b|us[ -]based|new york|nyc|san francisco|bay area|silicon valley|los angeles|seattle|boston|austin|chicago|denver|atlanta|miami|washington,? d\.?c|philadelphia|dallas|houston|palo alto|mountain view|menlo park|redwood city|sunnyvale|san jose|san mateo|san diego|santa clara|portland|pittsburgh|raleigh|salt lake city|nashville|minneapolis|detroit|phoenix|brooklyn|california|texas|colorado|massachusetts|illinois|florida|virginia|north carolina|utah|arizona|oregon|new jersey|pennsylvania|ohio|michigan|minnesota|tennessee|maryland|wisconsin|connecticut)\b/i;
+const US_STATE = /,\s*(?:CA|NY|WA|TX|MA|FL|NJ|PA|NC|VA|MI|MN|OR|UT|AZ|TN|OH|MD|MO|WI|CT|DC|NV|KY|SC|IA|KS|OK|NM|NE|NH|RI|VT|HI|AK|ME|MT|ND|SD|WV|WY|MS|LA)\b(?![a-z])/;
+const NOT_US = /\b(?:canada|toronto|vancouver|montr[eé]al|ottawa|calgary|mexico|brazil|australia)\b/i;
+export function looksUS(location: string): boolean {
+  return !NOT_US.test(location) && (US_PLACE.test(location) || US_STATE.test(location));
+}
+/**
+ * Most ATS boards don't state where the employer is based. When most of a board's own postings are in US
+ * locations, treat the employer as US-based, and say so.
+ */
+export function inferUsEmployer(rows: RawJob[]): string | undefined {
+  let us = 0, known = 0;
+  for (const row of rows) {
+    const isUs = looksUS(row.location);
+    if (isUs) us++;
+    if (isUs || countriesFromLocation(row.location).some(c => c !== 'US') || NOT_US.test(row.location)) known++;
+  }
+  return known >= 3 && us / known >= 0.5 ? `${us} of ${known} postings on this employer's own job board are in the US` : undefined;
+}
+
 export function safePublicUrl(value: string): string | null {
   try {
     const url = new URL(value);
@@ -173,7 +195,9 @@ export function classifyJob(raw: RawJob, fetchedAt: string): Job | null {
   const markets: Job['markets'] = [];
   if (countries.includes('GB')) markets.push('uk');
   if (countries.some(c => EU.includes(c))) markets.push('eu');
-  if (raw.employerCountry === 'US' && ['worldwide', 'india'].includes(remoteEligibility)) markets.push('us_remote');
+  if (remoteEligibility === 'worldwide') markets.push('remote_global');
+  // Working for a US company from India: remote and open to India or worldwide, or based at an Indian office.
+  if (raw.employerCountry === 'US' && (['worldwide', 'india'].includes(remoteEligibility) || countries.includes('IN'))) markets.push('india');
   if (!markets.length) return null;
   const sponsorship = sponsorshipFromText(raw.description);
   if (sponsorship.status === 'yes') {
@@ -189,7 +213,7 @@ export function classifyJob(raw: RawJob, fetchedAt: string): Job | null {
   return {
     stage, stageEvidence,
     id: `${raw.sourceKey}:${raw.externalId}`, title: raw.title.trim(), company: raw.company,
-    employerCountry: raw.employerCountry, employerCountrySource: raw.employerCountrySource,
+    employerCountry: raw.employerCountry, employerCountrySource: raw.employerCountrySource, employerCountryReason: raw.employerCountryReason,
     location: !locationCountries.length && countries.length ? `${raw.location} · ${countries.map(code => COUNTRIES[code]).join(', ')} (source region)` : raw.location, countries, markets, role, workplace, remoteEligibility,
     remoteEvidence: [...new Set([...world, ...india, ...restricted, ...roleRemote])].slice(0, 4).map(s => s.slice(0, 700)),
     sponsorship, description: raw.description,

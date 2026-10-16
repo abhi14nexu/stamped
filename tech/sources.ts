@@ -60,7 +60,14 @@ export async function fetchPublic(url: string): Promise<string> {
   validateSourceUrl(url);
   for (let attempt = 0; attempt < 2; attempt++) {
     // Large boards (thousands of postings with full content) can take longer than a minute under parallel load.
-    const response = await fetch(url, { redirect: 'error', signal: AbortSignal.timeout(90000), headers: { 'User-Agent': 'TechOpportunities/1.0 (public job discovery)', Accept: 'application/json,text/html' } });
+    let response: Response;
+    try {
+      response = await fetch(url, { redirect: 'error', signal: AbortSignal.timeout(90000), headers: { 'User-Agent': 'TechOpportunities/1.0 (public job discovery)', Accept: 'application/json,text/html' } });
+    } catch (error) {
+      // Dropped connections and resets are usually transient: retry once, then report.
+      if (attempt === 0) { await wait(3000); continue; }
+      throw error;
+    }
     if (response.status === 429 && new URL(url).hostname === 'www.linkedin.com') { await response.body?.cancel(); throw new Error('HTTP 429 — LinkedIn rate limited this run; stopped'); }
     if ((response.status === 429 || response.status >= 500) && attempt === 0) {
       const retry = Number(response.headers.get('retry-after') || 0);

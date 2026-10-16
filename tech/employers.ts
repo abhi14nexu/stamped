@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { ROOT } from './sources';
-import { classifyRole } from './classify';
+import { classifyRole, countriesFromLocation } from './classify';
 import type { RawJob } from './types';
 
 const origin = 'https://snimonofzyrbsqovpnsq.supabase.co';
@@ -16,7 +16,7 @@ export function createEmployerEnricher() {
   let key: string | undefined;
   try { key = fs.readFileSync(path.join(ROOT, 'UPSTREAM.md'), 'utf8').match(/apikey: (sb_publishable_[A-Za-z0-9_-]+)/)?.[1]; } catch {}
   return async (rows: RawJob[]): Promise<RawJob[]> => {
-    const candidates = [...new Set(rows.filter(job => !job.employerCountry && classifyRole(job.title) && job.workplace === 'Remote' && /\b(india|worldwide)\b/i.test(job.location)).map(job => job.company))];
+    const candidates = [...new Set(rows.filter(job => !job.employerCountry && classifyRole(job.title) && ((job.workplace === 'Remote' && /\b(india|worldwide)\b/i.test(job.location)) || countriesFromLocation(job.location).includes('IN'))).map(job => job.company))];
     const names = candidates.filter(name => !facts[normalize(name)] || Date.now() - Date.parse(facts[normalize(name)].checkedAt) >= 86400000);
     while (key && names.length && budget > 0) {
       budget--;
@@ -46,6 +46,6 @@ export function createEmployerEnricher() {
         fs.writeFileSync(temporary, JSON.stringify(facts), { mode: 0o600 }); fs.renameSync(temporary, file);
       } catch { break; }
     }
-    return rows.map(job => job.employerCountry || facts[normalize(job.company)]?.country !== 'US' ? job : { ...job, employerCountry: 'US', employerCountrySource: proof });
+    return rows.map(job => job.employerCountry || facts[normalize(job.company)]?.country !== 'US' ? job : { ...job, employerCountry: 'US', employerCountrySource: proof, employerCountryReason: 'Listed with a US headquarters in the hiring.cafe company dataset' });
   };
 }

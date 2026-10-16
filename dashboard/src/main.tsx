@@ -27,10 +27,10 @@ const DIMS: Dim[] = ['market', 'sponsor', 'stage', 'workplace', 'role', 'country
 const SPONSORS: Sponsor[] = ['yes', 'likely', 'licensed', 'unknown', 'no'];
 const STAGES: Stage[] = ['founding', 'early'];
 const WORKPLACES: Workplace[] = ['Remote', 'Hybrid', 'Onsite'];
-const MARKETS: Market[] = ['uk', 'eu', 'us_remote'];
+const MARKETS: Market[] = ['uk', 'eu', 'remote_global', 'india'];
 const PAGE_SIZE = { companies: 20, roles: 30 };
 const ROLES_WHEN_OPEN = 10;
-const regionNames: Record<Market, string> = { us_remote: 'US remote', uk: 'United Kingdom', eu: 'European Union' };
+const regionNames: Record<Market, string> = { uk: 'United Kingdom', eu: 'European Union', remote_global: 'Remote · anywhere', india: 'India · US companies' };
 const sponsorNames = { yes: 'Definitely sponsors', no: 'Don’t sponsor', unknown: 'Not sure' };
 const sponsorFilterNames: Record<Sponsor, string> = { yes: 'Definitely sponsors', likely: 'Likely (60%+, unconfirmed)', licensed: 'Licensed sponsor (register)', unknown: 'Not sure', no: 'Don’t sponsor' };
 const stageNames: Record<Stage, string> = { founding: 'Founding roles', early: 'Early-stage startups' };
@@ -138,7 +138,7 @@ function CompanyMark({ name, size = 'md' }: { name: string; size?: 'md' | 'lg' }
 }
 
 function SponsorBadge({ job, long = false }: { job: ListJob; long?: boolean }) {
-  if (!visaRelevant(job)) return <span className="badge remote"><Globe2 size={12} />{job.remoteEligibility === 'india' ? 'Remote · open to India' : 'Remote · worldwide'}</span>;
+  if (!visaRelevant(job)) return <span className="badge remote"><Globe2 size={12} />{job.remoteEligibility === 'worldwide' ? 'Remote · anywhere' : job.remoteEligibility === 'india' ? 'Remote · open to India' : job.countries.includes('IN') ? 'India office · US company' : 'Remote'}</span>;
   const s = job.sponsorship;
   const label = s.status === 'yes' ? (long ? 'Definitely sponsors' : 'Sponsors visa') : s.status === 'no' ? 'Don’t sponsor' : 'Not sure';
   return <span className={`badge ${s.status}`} title={s.reason}>
@@ -339,10 +339,11 @@ function DetailPanel({ job, full, saved, onToggleSave, onClose, sourceFailed }: 
         : evidence.length ? evidence.map((quote, i) => <blockquote key={i}>{quote}</blockquote>)
         : <p className="muted small">The listing doesn’t mention visas or sponsorship.</p>}
     </section> : <section className="panel remote">
-      <div className="panel-label"><Globe2 size={14} />Remote eligibility</div>
+      <div className="panel-label"><Globe2 size={14} />{job.markets.includes('india') && job.remoteEligibility === 'unknown' ? 'Work in India' : 'Remote eligibility'}</div>
       <div className="visa-status"><SponsorBadge job={job} long /></div>
       {(full?.remoteEvidence ?? []).map((quote, i) => <blockquote key={i}>{quote}</blockquote>)}
       <p className="panel-text">Check the full listing for timezone, employment-type and location conditions.</p>
+      {job.employerCountry === 'US' && <p className="panel-text"><strong>US employer:</strong> {job.employerCountryReason || 'the listing or a company dataset names a US headquarters.'}</p>}
       {job.employerCountrySource && <a className="text-link" href={job.employerCountrySource} target="_blank" rel="noopener noreferrer">Evidence the employer is US-based<ExternalLink size={11} /></a>}
     </section>}
 
@@ -365,13 +366,14 @@ function DetailPanel({ job, full, saved, onToggleSave, onClose, sourceFailed }: 
   </aside>;
 }
 
-function Highlights({ counts, onPick }: { counts: { yes: number; likely: number; licensed: number; founding: number; early: number; usRemote: number; week: number }; onPick: (patch: Partial<Filters>) => void }) {
+function Highlights({ counts, onPick }: { counts: { yes: number; likely: number; licensed: number; founding: number; early: number; remoteGlobal: number; india: number; week: number }; onPick: (patch: Partial<Filters>) => void }) {
   const items: [string, number, string, React.ReactNode, Partial<Filters>][] = [
     ['Sponsor visas or likely to', counts.yes + counts.likely, 'Explicit offers plus 60%+ signals', <ShieldCheck size={18} />, { sponsor: ['yes', 'likely'] }],
     ['At licensed sponsors', counts.licensed, 'Employer on the UK or Dutch register', <Landmark size={18} />, { sponsor: ['licensed'] }],
     ['Founding roles', counts.founding, 'Founding and first-hire titles', <Rocket size={18} />, { stage: ['founding'] }],
     ['Early-stage startups', counts.early, 'Seed, Series A, YC or founding team', <Sprout size={18} />, { stage: ['early'] }],
-    ['US remote, open to India', counts.usRemote, 'Worldwide or India-eligible', <Globe2 size={18} />, { market: 'us_remote' }],
+    ['Remote, work from anywhere', counts.remoteGlobal, 'Explicitly open worldwide', <Globe2 size={18} />, { market: 'remote_global' }],
+    ['Work for a US company from India', counts.india, 'Remote or at an Indian office', <MapPin size={18} />, { market: 'india' }],
     ['Updated this week', counts.week, 'Newest listings first', <Clock3 size={18} />, { sort: 'recent' }],
   ];
   return <aside className="detail highlights" aria-label="Shortcuts">
@@ -622,7 +624,7 @@ function App() {
       sponsor, yes: sponsor.yes, likely: sponsor.likely, licensed: sponsor.licensed,
       founding: pools.stage.filter(j => j.stage === 'founding').length, early: pools.stage.filter(j => earlyCompanies.has(j.company)).length,
       workplace: tally(pools.workplace, j => [j.workplace]), role: tally(pools.role, j => [j.role]), country: tally(pools.country, j => j.countries), provider: tally(pools.provider, j => [j.source]),
-      usRemote: pools.market.filter(j => j.markets.includes('us_remote')).length, week: recentCount(filtered, Date.now() - 7 * 86400000),
+      remoteGlobal: pools.market.filter(j => j.markets.includes('remote_global')).length, india: pools.market.filter(j => j.markets.includes('india')).length, week: recentCount(filtered, Date.now() - 7 * 86400000),
     };
   }, [engine, earlyCompanies, filtered]);
   const options = useMemo(() => ({
@@ -733,7 +735,7 @@ function App() {
         <div>
           <h1>{view === 'saved' ? 'Saved roles' : view === 'sources' ? 'Sources & method' : 'Discover tech roles'}</h1>
           <p>{view === 'sources' ? 'Where listings come from, how sponsorship is judged, and how each feed did.'
-            : <>{jobs.length.toLocaleString()} roles from {companies.length.toLocaleString()} companies<span className="sep">·</span><span className={`status-dot ${run.running ? 'pulsing' : ''}`} />{run.running ? 'refreshing now' : meta?.updatedAt ? `updated ${ago(meta.updatedAt)} at ${new Date(meta.updatedAt).toLocaleTimeString(undefined, { timeStyle: 'short' })}` : 'not collected yet'}</>}</p>
+            : loading ? 'Loading your collection…' : <>{jobs.length.toLocaleString()} roles from {companies.length.toLocaleString()} companies<span className="sep">·</span><span className={`status-dot ${run.running ? 'pulsing' : ''}`} />{run.running ? 'refreshing now' : meta?.updatedAt ? `updated ${ago(meta.updatedAt)} at ${new Date(meta.updatedAt).toLocaleTimeString(undefined, { timeStyle: 'short' })}` : 'not collected yet'}</>}</p>
         </div>
         <button className="button primary" disabled={run.running || !meta} onClick={() => void startRefresh()}><RefreshCw size={15} className={run.running ? 'spin' : ''} /><span>{run.running ? 'Refreshing…' : 'Refresh jobs'}</span></button>
       </header>
@@ -744,7 +746,7 @@ function App() {
         <div className="toolbar">
           <div className="tabs" role="group" aria-label="Job market">
             {(['all', ...MARKETS] as (Market | 'all')[]).map(m => <button key={m} aria-pressed={filters.market === m} className={filters.market === m ? 'active' : ''} onClick={() => set({ market: m })}>
-              {m === 'us_remote' && <Globe2 size={14} />}{m === 'all' ? 'All regions' : regionNames[m]}<span>{(counts.markets[m] ?? 0).toLocaleString()}</span></button>)}
+              {m === 'remote_global' && <Globe2 size={14} />}{m === 'india' && <MapPin size={14} />}{m === 'all' ? 'All regions' : regionNames[m]}<span>{(counts.markets[m] ?? 0).toLocaleString()}</span></button>)}
           </div>
           <div className="search-row">
             <label className="search"><Search size={18} /><input ref={searchRef} aria-label="Search jobs" placeholder="Search titles, companies, skills — e.g. rust kubernetes" value={filters.q} onChange={e => set({ q: e.target.value })} />{filters.q ? <button aria-label="Clear search" onClick={() => set({ q: '' })}><X size={15} /></button> : <kbd>/</kbd>}</label>
@@ -764,10 +766,11 @@ function App() {
           </div>}
           {pills.length > 0 && <div className="pills" aria-label="Active filters">{pills.map(p => <button key={p.key} className="pill" onClick={p.remove} aria-label={`Remove ${p.label}`}>{p.label}<X size={12} /></button>)}</div>}
         </div>
-        {filters.market === 'us_remote' && <p className="hint"><Globe2 size={14} />US-based employers with roles explicitly open worldwide or in India. Timezone and contract conditions still apply.</p>}
+        {filters.market === 'remote_global' && <p className="hint"><Globe2 size={14} />Remote roles explicitly open to applicants anywhere in the world, from any employer. Timezone and contract conditions still apply.</p>}
+        {filters.market === 'india' && <p className="hint"><MapPin size={14} />US companies and startups hiring in India: remote roles open to India or worldwide, plus roles at their Indian offices.</p>}
 
-        <div className="results-bar" ref={resultsTop}>
-          <p aria-live="polite"><strong>{filtered.length.toLocaleString()}</strong> {filtered.length === 1 ? 'role' : 'roles'} at {grouped.length.toLocaleString()} {grouped.length === 1 ? 'company' : 'companies'}{filtered.length > 0 && <span className="muted"> · {sponsorsInView.toLocaleString()} sponsor visas · {licensedInView.toLocaleString()} at licensed sponsors</span>}</p>
+        {!loading && <div className="results-bar" ref={resultsTop}>
+          <p aria-live="polite"><strong>{filtered.length.toLocaleString()}</strong> {filtered.length === 1 ? 'role' : 'roles'} at {grouped.length.toLocaleString()} {grouped.length === 1 ? 'company' : 'companies'}{sponsorsInView > 0 && <span className="muted"> · {sponsorsInView.toLocaleString()} sponsor visas</span>}{licensedInView > 0 && <span className="muted"> · {licensedInView.toLocaleString()} at licensed sponsors</span>}</p>
           <div className="results-tools">
             <div className="segmented" role="group" aria-label="Results view">
               <button className={jobView === 'companies' ? 'active' : ''} aria-pressed={jobView === 'companies'} onClick={() => setJobView('companies')}><Building2 size={14} />Companies</button>
@@ -777,7 +780,7 @@ function App() {
             <label className="sort"><span className="sr-only">Sort</span><select aria-label="Sort" value={filters.sort} onChange={e => set({ sort: e.target.value as Sort })}><option value="visa">Visa-friendly first</option><option value="recent">Most recent</option><option value="roles">Most roles first</option><option value="company">Company A–Z</option></select><ChevronDown size={13} /></label>
             <button className="icon-button bordered" aria-label="Export these roles to CSV" title="Export to CSV" onClick={() => void exportJobs(filtered)} disabled={!filtered.length}><Download size={16} /></button>
           </div>
-        </div>
+        </div>}
 
         {loading ? <div className="empty"><RefreshCw className="spin" size={28} /><h2>Loading your collection…</h2></div>
           : !filtered.length ? <div className="empty"><BriefcaseBusiness size={34} />

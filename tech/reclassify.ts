@@ -23,6 +23,7 @@ for (const line of fs.readFileSync(paths.leadsFile, 'utf8').split('\n')) {
     description: String(c.description || ''), applyUrl: String(c.apply_url || ''), sourceUrl: record.core.raw_url,
     source: String(c.provider || ''), sourceKey: key, employerCountry: c.employer_country_source === record.core.raw_url ? descriptionEmployerCountry(String(c.description || '')) : record.company.location?.country,
     employerCountrySource: typeof c.employer_country_source === 'string' ? c.employer_country_source : undefined,
+    employerCountryReason: typeof c.employer_country_reason === 'string' ? c.employer_country_reason : undefined,
     workplace: typeof c.workplace === 'string' ? c.workplace : undefined,
     updatedAt: typeof c.source_updated_at === 'string' ? c.source_updated_at : undefined,
     observedAt: typeof c.source_observed_at === 'string' ? c.source_observed_at : record.core.scraped_at,

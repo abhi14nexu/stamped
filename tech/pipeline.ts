@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { loadSourceConfig, getOutputPaths, ensureOutputDir, generatePrimaryKey, updateDataAsOf } from '../lib/source-config';
-import { classifyJob, classifyRole, COUNTRIES } from './classify';
+import { classifyJob, classifyRole, COUNTRIES, inferUsEmployer } from './classify';
 import { configuredSources, descriptionEmployerCountry, pruneFeedCache, ROOT, SOURCE_DIR, type SourceUnit } from './sources';
 import { applySponsorRegisters, refreshRegisters } from './registers';
 import { createEmployerEnricher } from './employers';
@@ -39,6 +39,7 @@ function acquireLock(): () => void {
   return () => { try { fs.unlinkSync(LOCK); } catch {} };
 }
 export const companyKey = (name: string) => name.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
+const EMPLOYER_GROUPS = new Set(['greenhouse', 'ashby', 'lever', 'smartrecruiters', 'workable', 'recruitee', 'personio']);
 export const EMPLOYER_FEEDS = ['Greenhouse', 'Ashby', 'Lever', 'SmartRecruiters', 'Workable', 'Recruitee', 'Personio'];
 // Parallel requests per provider host. Each provider is rate-limited separately; single-feed sources run alone.
 const GROUP_LIMITS: Record<string, number> = { greenhouse: 6, ashby: 6, lever: 4, smartrecruiters: 2, workable: 2, recruitee: 6, personio: 6 };
@@ -63,7 +64,7 @@ export function mergeSourceJobs(previous: Job[], fresh: Job[], results: SourceRe
     const employerCountry = job.employerCountrySource === job.sourceUrl ? descriptionEmployerCountry(job.description) : job.employerCountry;
     return classifyJob({ externalId: job.id.startsWith(job.sourceKey + ':') ? job.id.slice(job.sourceKey.length + 1) : job.id,
       title: job.title, company: job.company, location, description: job.description,
-      employerCountry, employerCountrySource: job.employerCountrySource,
+      employerCountry, employerCountrySource: job.employerCountrySource, employerCountryReason: job.employerCountryReason,
       workplace: job.workplace, countryHints: job.sourceKey === 'arbeitnow-uk' ? ['GB'] : undefined,
       applyUrl: job.applyUrl, sourceUrl: job.sourceUrl, source: job.source, sourceKey: job.sourceKey,
       updatedAt: job.sourceUpdatedAt, observedAt: job.fetchedAt, salary: job.salary, attributionUrl: job.attributionUrl,
@@ -88,6 +89,9 @@ export function mergeSourceJobs(previous: Job[], fresh: Job[], results: SourceRe
     const sharedPlace = aPlaces.some(place => bPlaces.includes(place));
     const compatible = sharedCountry && (sharedPlace || (a.workplace === 'Remote' && b.workplace === 'Remote') || (!aPlaces.length && !bPlaces.length));
     if (!compatible && a.location.toLowerCase() !== b.location.toLowerCase()) return false;
+    // An aggregator copy (Arbeitnow, Himalayas, LinkedIn…) of a role already on the employer's own board is a
+    // mirror even when its description was reformatted. Two identical openings on one board are still kept.
+    if (employerFeeds.has(a.source) !== employerFeeds.has(b.source)) return true;
     const left = content(a), right = content(b);
     const [shorter, longer] = left.length <= right.length ? [left, right] : [right, left];
     return shorter.length >= 500 && shorter.length / longer.length >= 0.8 && longer.includes(shorter);
@@ -144,7 +148,10 @@ export async function refresh(units: SourceUnit[] = configuredSources()): Promis
       const checkedAt = new Date().toISOString();
       let result: SourceResult;
       try {
-        const rawJobs = await enrichEmployers(await unit.collect());
+        let rawJobs = await enrichEmployers(await unit.collect());
+        // A board that mostly posts US roles belongs to a US employer, which matters for "India · US companies".
+        const usReason = unit.group && EMPLOYER_GROUPS.has(unit.group) && rawJobs.some(raw => !raw.employerCountry) ? inferUsEmployer(rawJobs) : undefined;
+        if (usReason) rawJobs = rawJobs.map(raw => raw.employerCountry ? raw : { ...raw, employerCountry: 'US', employerCountryReason: usReason });
         const unique = new Set<string>();
         const unitJobs: Job[] = [], unitRecords: ContractRecord[] = [];
         let accepted = 0;
@@ -214,7 +221,7 @@ function toContract(raw: RawJob, config: ReturnType<typeof loadSourceConfig>, fe
     company: { company_name: raw.company, ...(raw.employerCountry ? { location: { country: raw.employerCountry } } : {}) }, contact: {},
     context: { external_id: `${raw.sourceKey}:${raw.externalId}`, title: raw.title, job_location: raw.location, description: raw.description,
       apply_url: raw.applyUrl, provider: raw.source, provider_key: raw.sourceKey, source_updated_at: raw.updatedAt,
-      workplace: raw.workplace, employer_country_source: raw.employerCountrySource, salary: raw.salary, source_country_hints: raw.countryHints,
+      workplace: raw.workplace, employer_country_source: raw.employerCountrySource, employer_country_reason: raw.employerCountryReason, salary: raw.salary, source_country_hints: raw.countryHints,
       source_observed_at: raw.observedAt, attribution_url: raw.attributionUrl },
   };
   record.core.primary_key = generatePrimaryKey(config, { ...record });

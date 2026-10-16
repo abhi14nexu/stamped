@@ -115,12 +115,15 @@ test('same application from multiple providers deduplicates; distinct locations 
   const ashbyDetail = { ...different, applyUrl: 'https://jobs.ashbyhq.com/example/one' };
   assert.equal(mergeSourceJobs([], [ashby, ashbyDetail], []).length, 1);
 });
-test('cross-provider copies match by content and city, while distinct requisitions survive', () => {
+test('cross-provider copies merge by city (and by content between aggregators), while distinct requisitions survive', () => {
   const first = { ...classifyJob(raw, now)!, description: 'Build our distributed data systems with a team of engineers. '.repeat(18), location: 'London; Berlin', countries: ['GB', 'DE'] };
   const copy = { ...first, id: 'aggregate', source: 'Arbeitnow', sourceKey: 'aggregate', location: 'London', countries: ['GB'], applyUrl: 'https://example.com/aggregate', description: first.description + ' Apply now.' };
   assert.equal(mergeSourceJobs([], [first, copy], []).length, 1);
-  const differentBody = { ...copy, description: 'Build network security systems for our clients. '.repeat(20) };
-  assert.equal(mergeSourceJobs([], [first, differentBody], []).length, 2);
+  // The employer's own board is authoritative: a reformatted aggregator copy of the same title and city is a mirror.
+  const reformatted = { ...copy, description: 'Build network security systems for our clients. '.repeat(20) };
+  assert.equal(mergeSourceJobs([], [first, reformatted], []).length, 1);
+  const twoAggregators = { ...reformatted, id: 'aggregate-2', source: 'Himalayas', sourceKey: 'aggregate-2', applyUrl: 'https://example.com/aggregate-2' };
+  assert.equal(mergeSourceJobs([], [copy, twoAggregators], []).length, 2);
   const differentCity = { ...copy, location: 'Manchester' };
   assert.equal(mergeSourceJobs([], [first, differentCity], []).length, 2);
   const differentRequisition = { ...first, id: 'second-requisition', applyUrl: 'https://example.com/jobs/second' };

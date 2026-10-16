@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { sponsorshipFromText, classifyJob, classifyRole, countriesFromLocation, safePublicUrl } from '../classify';
+import { sponsorshipFromText, classifyJob, classifyRole, countriesFromLocation, inferUsEmployer, looksUS, safePublicUrl } from '../classify';
 import { htmlToText } from '../sources';
 import { mergeSourceJobs } from '../pipeline';
 import type { RawJob, SourceResult } from '../types';
@@ -57,17 +57,23 @@ test('technical role families include hardware, QA, support and product', () => 
 });
 test('explicit India remote role from US employer qualifies', () => {
   const j = classifyJob({ ...raw, location: 'India (Remote)', employerCountry: 'US' }, now)!;
-  assert.deepEqual(j.markets, ['us_remote']); assert.equal(j.remoteEligibility, 'india');
+  assert.deepEqual(j.markets, ['india']); assert.equal(j.remoteEligibility, 'india');
 });
 test('remote US-only listing mentioning an India team is excluded', () => {
   assert.equal(classifyJob({ ...raw, employerCountry: 'US', location: 'Remote, Canada; Remote, United States', description: "It's split into a US group (this role) and an India-based group working the same charter." }, now), null);
 });
-test('remote Poland does not make separate Bangalore location remote', () => {
+test('remote Poland does not make separate Bangalore location remote; the Indian office still counts', () => {
   const j = classifyJob({ ...raw, employerCountry: 'US', location: 'Bangalore, India; Remote, Poland' }, now)!;
-  assert.ok(!j.markets.includes('us_remote')); assert.deepEqual(j.markets, ['eu']);
+  assert.notEqual(j.remoteEligibility, 'india'); assert.deepEqual(j.markets, ['eu', 'india']);
 });
 test('remote customer collaboration alone is not permission to work remotely', () => {
-  assert.equal(classifyJob({ ...raw, employerCountry: 'US', location: 'India', description: 'You will collaborate with our remote teams and worldwide customers.' }, now), null);
+  const j = classifyJob({ ...raw, employerCountry: 'US', location: 'India', description: 'You will collaborate with our remote teams and worldwide customers.' }, now)!;
+  assert.notEqual(j.workplace, 'Remote'); assert.equal(j.remoteEligibility, 'unknown'); assert.deepEqual(j.markets, ['india']);
+});
+test('worldwide remote from any employer is "Remote · anywhere"; Indian roles need a US employer', () => {
+  assert.deepEqual(classifyJob({ ...raw, location: 'Worldwide (Remote)' }, now)?.markets, ['remote_global']);
+  assert.deepEqual(classifyJob({ ...raw, employerCountry: 'US', location: 'Worldwide (Remote)' }, now)?.markets, ['remote_global', 'india']);
+  assert.equal(classifyJob({ ...raw, location: 'Bengaluru, India' }, now), null);
 });
 test('worldwide remote needs explicit location permission', () => {
   assert.equal(classifyJob({ ...raw, employerCountry: 'US', location: 'Worldwide (Remote)' }, now)?.remoteEligibility, 'worldwide');
@@ -97,4 +103,15 @@ test('failed feeds retain previous rows; successful feeds replace closed jobs', 
   assert.deepEqual(mergeSourceJobs([old], [], [{ ...result, status: 'ok' }]), []);
   const newJob = { ...old, title: 'Updated role' };
   assert.deepEqual(mergeSourceJobs([old], [newJob], [{ ...result, status: 'ok' }]), [newJob]);
+});
+
+test('US locations are recognised without mistaking country codes for states', () => {
+  for (const place of ['San Francisco, CA', 'New York City', 'Remote (US)', 'Austin, TX', 'Seattle, WA; Remote', 'United States']) assert.equal(looksUS(place), true, place);
+  for (const place of ['Berlin, DE', 'Bengaluru, IN', 'Tel Aviv, IL', 'Toronto, ON, Canada', 'London, United Kingdom', 'Vancouver, CA']) assert.equal(looksUS(place), false, place);
+});
+test('an employer is treated as US-based when most of its own postings are in the US', () => {
+  const rows = (locations: string[]) => locations.map((location, i) => ({ ...raw, externalId: String(i), location }));
+  assert.match(inferUsEmployer(rows(['San Francisco, CA', 'New York, NY', 'Remote (US)', 'London, UK']))!, /3 of 4 postings/);
+  assert.equal(inferUsEmployer(rows(['Berlin, Germany', 'Paris, France', 'New York, NY'])), undefined);
+  assert.equal(inferUsEmployer(rows(['San Francisco, CA', 'Remote'])), undefined);
 });
